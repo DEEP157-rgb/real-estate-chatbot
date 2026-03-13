@@ -1,8 +1,16 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Property Chatbot</title>
+<title>Sumukh Rabani Properties Chatbot</title>
+
 <style>
+
+body{
+font-family:Arial, sans-serif;
+}
+
+/* Floating chat button */
+
 #chatBtn{
 position:fixed;
 bottom:20px;
@@ -14,8 +22,10 @@ border-radius:50%;
 cursor:pointer;
 font-size:22px;
 box-shadow:0 4px 15px rgba(0,0,0,0.3);
-z-index:999;
+z-index:9999;
 }
+
+/* Chatbox */
 
 #chatBox{
 display:none;
@@ -24,38 +34,64 @@ bottom:80px;
 right:20px;
 width:320px;
 background:white;
-border:1px solid #ddd;
 border-radius:12px;
 padding:12px;
-box-shadow:0 8px 25px rgba(0,0,0,0.2);
-font-family:Arial, sans-serif;
-z-index:999;
+box-shadow:0 8px 25px rgba(0,0,0,0.25);
+z-index:9999;
 }
+
+/* Chat header */
+
+#chatHeader{
+font-weight:bold;
+margin-bottom:8px;
+color:#333;
+}
+
+/* Messages */
 
 #messages{
 height:200px;
 overflow:auto;
 font-size:14px;
+margin-bottom:8px;
 }
 
-input{
+/* Input */
+
+#msg{
 width:100%;
-padding:8px;
+padding:10px;
+border-radius:6px;
+border:1px solid #ccc;
 }
+
 </style>
+
 </head>
 
 <body>
 
+<!-- Chat Button -->
+
 <div id="chatBtn">💬</div>
 
+<!-- Chat Window -->
+
 <div id="chatBox">
+
+<div id="chatHeader">
+Sumukh Rabani Assistant
+</div>
+
 <div id="messages">
-<b>Assistant:</b> Welcome to Sumukh Rabani Properties. How can I help?
+<b>Assistant:</b> Welcome to Sumukh Rabani Properties in Manjushree, Haldia. Are you looking for a flat, house, or commercial property?
 </div>
 
 <input id="msg" placeholder="Type message..." onkeypress="send(event)">
+
 </div>
+
 
 <script>
 
@@ -63,44 +99,75 @@ let stage=0;
 let name="";
 let phone="";
 
+/* Toggle Chat */
+
 document.getElementById("chatBtn").onclick=function(){
+
 let box=document.getElementById("chatBox");
-box.style.display = box.style.display=="block"?"none":"block";
+
+box.style.display = box.style.display=="block" ? "none" : "block";
+
 }
 
+
+/* Send Message */
+
 function send(e){
+
 if(e.key!="Enter") return;
 
 let input=document.getElementById("msg");
+
 let text=input.value;
 
 let m=document.getElementById("messages");
+
 m.innerHTML+="<br><b>You:</b> "+text;
 
 input.value="";
 
+
+/* Conversation flow */
+
 if(stage==0){
+
 m.innerHTML+="<br><b>Assistant:</b> May I know your name?";
+
 stage=1;
+
 }
+
 else if(stage==1){
+
 name=text;
+
 m.innerHTML+="<br><b>Assistant:</b> Please share your phone number.";
+
 stage=2;
+
 }
+
 else if(stage==2){
+
 phone=text;
+
 m.innerHTML+="<br><b>Assistant:</b> Thank you "+name+
-". Our team will contact you soon.";
+". Our property team will contact you shortly.";
+
+
+/* WhatsApp Lead */
 
 let msg="Hello, my name is "+name+
 ". I am interested in property. Phone: "+phone;
 
 let link="https://wa.me/919804342483?text="+encodeURIComponent(msg);
 
-m.innerHTML+="<br><a href='"+link+"' target='_blank'>Chat on WhatsApp</a>";
+m.innerHTML+="<br><a href='"+link+"' target='_blank'>Click here to chat on WhatsApp</a>";
+
 stage=3;
+
 }
+
 
 m.scrollTop=m.scrollHeight;
 
