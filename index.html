@@ -5,7 +5,11 @@
 
 <style>
 
+/* Remove background when embedded */
+
 body{
+margin:0;
+background:transparent;
 font-family:Arial, sans-serif;
 }
 
@@ -40,7 +44,7 @@ box-shadow:0 8px 25px rgba(0,0,0,0.25);
 z-index:9999;
 }
 
-/* Chat header */
+/* Header */
 
 #chatHeader{
 font-weight:bold;
@@ -72,7 +76,7 @@ border:1px solid #ccc;
 
 <body>
 
-<!-- Chat Button -->
+<!-- Floating Chat Button -->
 
 <div id="chatBtn">💬</div>
 
@@ -92,7 +96,6 @@ Sumukh Rabani Assistant
 
 </div>
 
-
 <script>
 
 let stage=0;
@@ -109,8 +112,7 @@ box.style.display = box.style.display=="block" ? "none" : "block";
 
 }
 
-
-/* Send Message */
+/* Chat Conversation */
 
 function send(e){
 
@@ -126,8 +128,6 @@ m.innerHTML+="<br><b>You:</b> "+text;
 
 input.value="";
 
-
-/* Conversation flow */
 
 if(stage==0){
 
@@ -158,16 +158,15 @@ m.innerHTML+="<br><b>Assistant:</b> Thank you "+name+
 /* WhatsApp Lead */
 
 let msg="Hello, my name is "+name+
-". I am interested in property. Phone: "+phone;
+". I am interested in property in Haldia. Phone: "+phone;
 
 let link="https://wa.me/919804342483?text="+encodeURIComponent(msg);
 
-m.innerHTML+="<br><a href='"+link+"' target='_blank'>Click here to chat on WhatsApp</a>";
+m.innerHTML+="<br><a href='"+link+"' target='_blank'>Chat with us on WhatsApp</a>";
 
 stage=3;
 
 }
-
 
 m.scrollTop=m.scrollHeight;
 
